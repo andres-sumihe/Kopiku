@@ -68,8 +68,32 @@ public class Product  implements java.io.Serializable {
         return prod;
     }
     
+    public void save(){
+        dao pdao=new dao();
+        pdao.addProduct(this);
+    }
     
-
+    public void delete(){    
+        dao pdao=new dao();
+        pdao.deleteProduct(id);
+    }
+    
+    public void update(){
+        dao pdao=new dao();
+        pdao.updateProduct(this);
+    }
+    
+    public List<Product> getbyid(){ 
+        dao pdao=new dao();
+        List<Product> prod=pdao.getbyID(id);
+        name=prod.get(0).name;
+        description=prod.get(0).description;
+        path=prod.get(0).path;
+        price=prod.get(0).price;
+        return prod;
+    }
+    
+    
 }
 
 

@@ -43,5 +43,52 @@ public class dao {
         }
     }
     
+    public void deleteProduct(int id){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            Product prod=(Product)session.load(Product.class, new Integer(id));
+            session.delete(prod);
+            trans.commit();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public List<Product> getbyID(int sno){
+        Product product=new Product();
+        List<Product> prod1=new ArrayList();
+       
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from Product where id= :id");
+            query.setInteger("id", sno);
+            product=(Product)query.uniqueResult();
+            prod1=query.list();
+            trans.commit();
+        }catch(Exception e){
+            
+        }
+        return prod1;
+    }
+    
+    public void updateProduct(Product product){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            session.update(product);
+            trans.commit();
+        }catch(Exception e){
+            
+        }
+    }
     
 }
