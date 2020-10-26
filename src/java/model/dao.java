@@ -126,4 +126,54 @@ public class dao {
             e.printStackTrace();
         }
     }
+    
+    public List<User> retriveUser(){
+        List usr = new ArrayList();
+        User usr1=new User();
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try
+        {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from User");
+            usr=query.list();
+            trans.commit();   
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return usr;
+    }
+    
+    public void addUser(User user){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            session.save(user);
+            trans.commit();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void deleteUser(int id){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            User usr=(User)session.load(User.class, new Integer(id));
+            session.delete(usr);
+            trans.commit();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }
