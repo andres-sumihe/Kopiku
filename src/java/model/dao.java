@@ -2,6 +2,8 @@ package model;
 
 import controller.NewHibernateUtil;
 import controller.Product;
+import controller.Transaksi;
+import controller.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -91,4 +93,37 @@ public class dao {
         }
     }
     
+    public List<Transaksi> retrieveTransaksi(){
+        List tran = new ArrayList();
+        Transaksi tran1=new Transaksi();
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try
+        {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from Transaksi");
+            tran=query.list();
+            trans.commit();   
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return tran;
+    }
+    
+    public void addTransaksi(Transaksi transaksi){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            session.save(transaksi);
+            trans.commit();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }
