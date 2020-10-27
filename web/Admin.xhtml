@@ -56,7 +56,7 @@ and open the template in the editor.
                                     <h:inputText id="priceMakanan" class="form-control" value="#{product.price}"/>
                                 <br />
                                 <br />
-                                <h:commandButton class="btn btn-success" value="Tambahkan Makanan" action="#{product.saveMakanan}"/>
+                                <h:commandButton class="btn btn-success" value="Tambahkan Makanan" action="#{product.saveMakanan()}"/>
                             
                         </h:form> 
 
@@ -146,12 +146,62 @@ and open the template in the editor.
 
                       <div id="menu2" class="tab-pane fade">
                         <h3>Daftar Pesanan</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                      </div>
+                        
+                    
+                    
+                    
+                    </div>
                       <div id="menu3" class="tab-pane fade">
-                        <h3>Menu 3</h3>
-                        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                      </div>
+                        <h3>Daftar Makanan</h3>
+
+                        <h:dataTable class="table bg-light"  value="#{product.getallrecordsMakanan()}" var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">Product Id</f:facet>
+                                #{p.id}
+                            </h:column>
+                        <h:column>                   
+                            <f:facet name="header">Product Name</f:facet>               
+                                #{p.name}
+                        </h:column>
+                            <h:column>                   
+                            <f:facet name="header">Product Description</f:facet>               
+                                #{p.description}
+                        </h:column>
+                            <h:column>                   
+                            <f:facet name="header">Product Price</f:facet>               
+                                #{p.price}
+                        </h:column>
+                            <h:column>                   
+                            <f:facet name="header">Kategori</f:facet>               
+                                #{p.path}
+                        </h:column>
+                        </h:dataTable>
+                    
+                        <h3>Daftar Minuman</h3>
+                        
+                        <h:dataTable class="table bg-light" value="#{product.getallrecordsMinuman()}" var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">Product Id</f:facet>
+                                #{p.id}
+                            </h:column>
+                        <h:column>                   
+                            <f:facet name="header">Product Name</f:facet>               
+                                #{p.name}
+                        </h:column>
+                            <h:column>                   
+                            <f:facet name="header">Product Description</f:facet>               
+                                #{p.description}
+                        </h:column>
+                            <h:column>                   
+                            <f:facet name="header">Product Price</f:facet>               
+                                #{p.price}
+                        </h:column>
+                            <h:column>                   
+                            <f:facet name="header">Kategori</f:facet>               
+                                #{p.path}
+                        </h:column>
+                        </h:dataTable>
+                    </div>
                     </div>
                   </div>
             </div>

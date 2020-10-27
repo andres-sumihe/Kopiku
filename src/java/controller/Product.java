@@ -1,4 +1,5 @@
 package controller;
+import java.util.Arrays;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import model.dao;
@@ -9,6 +10,7 @@ public class Product  implements java.io.Serializable {
      private String description;
      private float price;
      private String path;
+     public String[] favoriteCar1;
     public Product() {
     }
     public Product(int id, String name, String description, float price, String path) {
@@ -117,6 +119,26 @@ public class Product  implements java.io.Serializable {
         this.path = "";
     }
 
+    public String[] getFavoriteCar1() {
+        return favoriteCar1;
+    }
+    public void setFavoriteCar1(String[] favoriteCar1) {
+        this.favoriteCar1 = favoriteCar1;
+    }
+    public String[] getFavoriteCar1Value()
+    {
+          
+          List<Product> prod= getallrecordsMakanan();
+          favoriteCar1 = new String[prod.size()];
+            for (int i =0; i < prod.size(); i++) 
+            favoriteCar1[i] = prod.get(i).name; 
+        return favoriteCar1;
+    }
+     
+    public String getFavoriteCar1InString()
+    {
+        return Arrays.toString(favoriteCar1);
+    }
 }
     
     

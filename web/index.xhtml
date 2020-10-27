@@ -22,7 +22,22 @@ and open the template in the editor.
         </div>
         <div class="row w-100 m-0">
             <div class="col-md-2 bg-danger">TEST</div>
-            <div class="col-md-9 bg-success">TEST</div>
+            <div class="col-md-9 bg-success">
+                <h:form class="form-group form-makanan" id="updateMinuman">
+                    <h4>Pilih Meja</h4>
+                    <h:selectOneMenu class="form-control" >
+                        <f:selectItem itemValue="Meja-1" itemLabel="Meja 1" />
+                        <f:selectItem itemValue="Meja-2" itemLabel="Meja 2" />
+                        <f:selectItem itemValue="Meja-3" itemLabel="Meja 3" />
+                    </h:selectOneMenu>
+                    <h5>Makanan</h5>
+                    <h:selectManyCheckbox value="#{product.favoriteCar1}">
+                        <f:selectItems value="#{product.favoriteCar1Value}" />
+                    </h:selectManyCheckbox>
+                    
+                    <h:commandButton class="btn btn-success" value="Update Minuman" action="#{product.update}"/>
+                </h:form> 
+            </div>
             <div class="col-md-1 bg-warning">TEST</div>
         </div>
     </div>
