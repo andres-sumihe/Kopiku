@@ -124,6 +124,7 @@ public class Product  implements java.io.Serializable {
     public void update(){
         dao pdao=new dao();
         pdao.updateProduct(this);
+        clear();
     }
     
     public List<Product> getbyid(){ 
