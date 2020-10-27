@@ -49,7 +49,7 @@ public class Product  implements java.io.Serializable {
         return this.pathUpdate;
     }
     
-    public float getPrice() {
+    public float getPriceUpdate() {
         return this.priceUpdate;
     }
     
@@ -67,7 +67,8 @@ public class Product  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public float getPrice() {
+    
+    public float getPrice(){
         return this.price;
     }
     
