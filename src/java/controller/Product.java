@@ -1,27 +1,16 @@
 package controller;
-
-
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import model.dao;
-
-
 @ManagedBean(name = "product")
 public class Product  implements java.io.Serializable {
-
      private int id;
      private String name;
      private String description;
      private float price;
      private String path;
-     public String nameUpdate;
-     public String descriptionUpdate;
-     public String pathUpdate;
-     public float priceUpdate;
-
     public Product() {
     }
-
     public Product(int id, String name, String description, float price, String path) {
        this.id = id;
        this.name = name;
@@ -82,8 +71,7 @@ public class Product  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    public float getPrice(){
+    public float getPrice() {
         return this.price;
     }
     
@@ -97,13 +85,12 @@ public class Product  implements java.io.Serializable {
     public void setPath(String path) {
         this.path = path;
     }
-
     public List<Product> getallrecords(){
         dao pdao=new dao();
         List<Product> prod=pdao.retriveProduct();
         return prod;
     }
-    
+
     public void saveMakanan(){
         dao pdao=new dao();
         setPath("Makanan");
@@ -115,18 +102,18 @@ public class Product  implements java.io.Serializable {
         setPath("Minuman");
         pdao.addProduct(this);
     }
-    
+
     public void delete(){    
         dao pdao=new dao();
         pdao.deleteProduct(id);
     }
-    
+
     public void update(){
         dao pdao=new dao();
         pdao.updateProduct(this);
         clear();
     }
-    
+
     public List<Product> getbyid(){ 
         dao pdao=new dao();
         List<Product> prod=pdao.getbyID(id);
@@ -152,6 +139,11 @@ public class Product  implements java.io.Serializable {
         this.price = 0;
         this.path = "";
     }
+
+
+
+
 }
-
-
+    
+    
+    

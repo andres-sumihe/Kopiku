@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 @ManagedBean(name = "user")
 public class User  implements java.io.Serializable {
 
-
      private Integer id;
      private String name;
      private String username;
