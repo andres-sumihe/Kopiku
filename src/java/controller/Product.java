@@ -108,23 +108,26 @@ public class Product  implements java.io.Serializable {
     
     public void update(){
         dao pdao=new dao();
-        this.name = nameUpdate;
-        this.price = priceUpdate;
-        this.description = descriptionUpdate;
-        this.path = pathUpdate;
         pdao.updateProduct(this);
     }
     
     public List<Product> getbyid(){ 
         dao pdao=new dao();
         List<Product> prod=pdao.getbyID(id);
-        nameUpdate=prod.get(0).name;
-        descriptionUpdate=prod.get(0).description;
-        pathUpdate=prod.get(0).path;
-        priceUpdate=prod.get(0).price;
+        name=prod.get(0).name;
+        description=prod.get(0).description;
+        path=prod.get(0).path;
+        price=prod.get(0).price;
         return prod;
     }
       
+    public void clear(){
+        this.id = 0;
+        this.name = "";
+        this.description = "";
+        this.price = 0;
+        this.path = "";
+    }
 }
 
 
