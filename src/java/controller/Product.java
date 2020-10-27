@@ -42,19 +42,34 @@ public class Product  implements java.io.Serializable {
     }
     
     public String getNameUpdate() {
-        return this.nameUpdate;
+        return nameUpdate;
     }
     
     public String getPathUpdate() {
-        return this.pathUpdate;
+        return pathUpdate;
     }
     
     public float getPriceUpdate() {
-        return this.priceUpdate;
+        return priceUpdate;
     }
     
     public String getDescriptionUpdate() {
-        return this.descriptionUpdate;
+        return descriptionUpdate;
+    }
+    public void setNameUpdate(String name) {
+        nameUpdate = name;
+    }
+    
+    public void setPathUpdate(String path) {
+        pathUpdate = path;
+    }
+    
+    public void setPriceUpdate(float price) {
+        priceUpdate = price;
+    }
+    
+    public void setDescriptionUpdate(String desc) {
+        descriptionUpdate = desc;
     }
     
     public void setName(String name) {
@@ -108,21 +123,25 @@ public class Product  implements java.io.Serializable {
     
     public void update(){
         dao pdao=new dao();
-        this.name = nameUpdate;
-        this.price = priceUpdate;
-        this.description = descriptionUpdate;
-        this.path = pathUpdate;
         pdao.updateProduct(this);
     }
     
     public List<Product> getbyid(){ 
         dao pdao=new dao();
         List<Product> prod=pdao.getbyID(id);
-        nameUpdate=prod.get(0).name;
-        descriptionUpdate=prod.get(0).description;
-        pathUpdate=prod.get(0).path;
-        priceUpdate=prod.get(0).price;
+        this.name=prod.get(0).name;
+        this.description=prod.get(0).description;
+        this.path=prod.get(0).path;
+        this.price=prod.get(0).price;
         return prod;
+    }
+    
+    public void clearVar(){
+        this.name = "";
+        this.id = 0;
+        this.description = "";
+        this.price = 0;
+        this.path = "";
     }
       
 }

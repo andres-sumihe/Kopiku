@@ -70,16 +70,16 @@ and open the template in the editor.
                                 <h:commandButton class="btn btn-info" value="Tampilkan Product" action="#{product.getbyid}"/>
 
                             <label for="namaUpdateMakanan" class="text">Nama Makanan</label> 
-                                <h:inputText id="namaUpdateMakanan" class="form-control" value="#{product.nameUpdate}"/>
+                            <h:inputText id="namaUpdateMakanan" class="form-control" value="#{product.name}"/>
                                 
                             <label for="descUpdateMakanan" class="text">Masukan Deskripsi</label> 
-                                <h:inputText id="descUpdateMakanan" class="form-control" value="#{product.descriptionUpdate}"/>
+                            <h:inputText id="descUpdateMakanan" class="form-control" value="#{product.description}"/>
 
                             <label for="priceUpdateMakanan" class="text">Masukkan Harga</label> 
-                                <h:inputText id="priceUpdateMakanan" class="form-control" value="#{product.priceUpdate}"/>
+                            <h:inputText id="priceUpdateMakanan" class="form-control" value="#{product.price}"/>
                             <br />
                             <br />
-                            <h:commandButton class="btn btn-success" value="Update Makanan" action="#{product.updateUpdate}"/>
+                            <h:commandButton class="btn btn-success" value="Update Makanan" action="#{product.update}"/>
                         </h:form> 
 
                       </div>
