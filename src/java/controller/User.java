@@ -82,6 +82,7 @@ public class User  implements java.io.Serializable {
     public void update(){
         dao pdao=new dao();
         pdao.updateUser(this);
+        clear();
     }
     
     public List<User> getbyuserid(){ 
@@ -92,6 +93,14 @@ public class User  implements java.io.Serializable {
         password=usr.get(0).password;
         role=usr.get(0).role;
         return usr;
+    }
+    
+    public void clear(){
+        this.name = "";
+        this.id = 0;
+        this.password = "";
+        this.role = "";
+        this.username = "";
     }
     
     public boolean checkuser(){

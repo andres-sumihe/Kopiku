@@ -129,10 +129,17 @@ public class Product  implements java.io.Serializable {
     public List<Product> getbyid(){ 
         dao pdao=new dao();
         List<Product> prod=pdao.getbyID(id);
+<<<<<<< HEAD
         this.name=prod.get(0).name;
         this.description=prod.get(0).description;
         this.path=prod.get(0).path;
         this.price=prod.get(0).price;
+=======
+        name=prod.get(0).name;
+        description=prod.get(0).description;
+        path=prod.get(0).path;
+        price=prod.get(0).price;
+>>>>>>> fdfb5b97c41369d17e38fb194ffd4f1fedc6afc4
         return prod;
     }
     
@@ -144,6 +151,13 @@ public class Product  implements java.io.Serializable {
         this.path = "";
     }
       
+    public void clear(){
+        this.id = 0;
+        this.name = "";
+        this.description = "";
+        this.price = 0;
+        this.path = "";
+    }
 }
 
 
