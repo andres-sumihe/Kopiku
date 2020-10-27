@@ -11,7 +11,7 @@ public class Transaksi  implements java.io.Serializable {
      private int jumlah;
      private String product;
      private float total;
-
+     private String tablenum;
     public Transaksi() {
     }
 
@@ -49,7 +49,13 @@ public class Transaksi  implements java.io.Serializable {
     public void setTotal(float total) {
         this.total = total;
     }
-
+    public String getTablenum() {
+        return this.tablenum;
+    }
+    
+    public void setTablenum(String tablenum) {
+        this.tablenum = tablenum;
+    }
     public List<Transaksi> getallrecords(){
         dao tdao=new dao();
         List<Transaksi> tran=tdao.retrieveTransaksi();
@@ -61,7 +67,4 @@ public class Transaksi  implements java.io.Serializable {
         tdao.addTransaksi(this);
     }
 
-
 }
-
-
