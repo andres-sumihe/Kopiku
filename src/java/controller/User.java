@@ -3,6 +3,9 @@ package controller;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import model.dao;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 @ManagedBean(name = "user")
 public class User  implements java.io.Serializable {
@@ -75,8 +78,47 @@ public class User  implements java.io.Serializable {
         dao udao=new dao();
         udao.deleteUser(id);
     }
-
-
+    
+    public void update(){
+        dao pdao=new dao();
+        pdao.updateUser(this);
+    }
+    
+    public List<User> getbyuserid(){ 
+        dao udao=new dao();
+        List<User> usr=udao.getbyuserID(id);
+        name=usr.get(0).name;
+        username=usr.get(0).username;
+        password=usr.get(0).password;
+        role=usr.get(0).role;
+        return usr;
+    }
+    
+    public boolean checkuser(){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from User where username= :username and password= :password");
+            trans.commit();
+            query.setString("username", username);
+            query.setString("password", password);
+            
+            List list = query.list();
+            
+            if(list.size()==1){
+                return true;
+            }else{
+                return false;
+            }
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 
 

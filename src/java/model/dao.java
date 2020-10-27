@@ -62,7 +62,7 @@ public class dao {
     }
     
     public List<Product> getbyID(int sno){
-        Product product=new Product();
+        Product prod=new Product();
         List<Product> prod1=new ArrayList();
        
         Transaction trans=null;
@@ -71,7 +71,7 @@ public class dao {
             trans=session.beginTransaction();
             Query query=session.createQuery("from Product where id= :id");
             query.setInteger("id", sno);
-            product=(Product)query.uniqueResult();
+            prod=(Product)query.uniqueResult();
             prod1=query.list();
             trans.commit();
         }catch(Exception e){
@@ -174,6 +174,38 @@ public class dao {
         catch (Exception e) 
         {
             e.printStackTrace();
+        }
+    }
+    
+    public List<User> getbyuserID(int sno){
+        User usr=new User();
+        List<User> usr1=new ArrayList();
+       
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from User where id= :id");
+            query.setInteger("id", sno);
+            usr=(User)query.uniqueResult();
+            usr1=query.list();
+            trans.commit();
+        }catch(Exception e){
+            
+        }
+        return usr1;
+    }
+    
+    public void updateUser(User user){
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try 
+        {
+            trans=session.beginTransaction();
+            session.update(user);
+            trans.commit();
+        }catch(Exception e){
+            
         }
     }
 }
