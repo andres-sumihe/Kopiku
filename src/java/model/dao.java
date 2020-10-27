@@ -62,7 +62,7 @@ public class dao {
     }
     
     public List<Product> getbyID(int sno){
-        Product prod=new Product();
+        Product product=new Product();
         List<Product> prod1=new ArrayList();
        
         Transaction trans=null;
@@ -71,7 +71,7 @@ public class dao {
             trans=session.beginTransaction();
             Query query=session.createQuery("from Product where id= :id");
             query.setInteger("id", sno);
-            prod=(Product)query.uniqueResult();
+            product=(Product)query.uniqueResult();
             prod1=query.list();
             trans.commit();
         }catch(Exception e){

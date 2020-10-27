@@ -16,14 +16,10 @@
                 Product Name : <h:inputText value="#{product.name}"/>
                 Product Description : <h:inputText value="#{product.description}"/>
                 Product Price : <h:inputText value="#{product.price}"/>
+                <h:inputHidden value="#{product.path}"/>
                 <h:commandButton value="Perbarui Product" action="#{product.update}"/>
             </h:panelGrid>
         </h:form>
-        
-        <a href="Login.xhtml" > LOGIN </a>
-        
-        
-        
     </h:body>
 </html>
 
