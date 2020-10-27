@@ -12,6 +12,7 @@ public class Transaksi  implements java.io.Serializable {
      private String product;
      private float total;
      private String tablenum;
+     public float sum =0;
     public Transaksi() {
     }
 
@@ -66,5 +67,24 @@ public class Transaksi  implements java.io.Serializable {
         dao tdao=new dao();
         tdao.addTransaksi(this);
     }
-
+    
+    public List<Transaksi> getbyMeja(String Meja){
+        dao tdao=new dao();
+        List<Transaksi> tran = tdao.retriveByMeja(Meja);
+        float[] a = new float[tran.size()];
+        for(int i = 0; i<tran.size();i++){
+            a[i] = tran.get(i).total;
+        }
+        for(int i=0; i<tran.size(); i++){
+            sum = sum + a[i];
+         }
+        return tran;
+    }
+    
+    public float getSum(){
+        return this.sum;
+    }
+    public void setSum(float sum){
+        this.sum = sum;
+    }
 }

@@ -1,6 +1,8 @@
 package controller;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import model.dao;
 @ManagedBean(name = "product")
@@ -10,7 +12,13 @@ public class Product  implements java.io.Serializable {
      private String description;
      private float price;
      private String path;
-     public String[] favoriteCar1;
+     public String makananPilih;
+     public String minumanPilih;
+     public String[] KeranjangNama;
+     public int[] KeranjangHarga = new int[100];
+     public String Meja;
+     
+     int indexx =0;
     public Product() {
     }
     public Product(int id, String name, String description, float price, String path) {
@@ -56,16 +64,25 @@ public class Product  implements java.io.Serializable {
     public void setPath(String path) {
         this.path = path;
     }
-    public List<Product> getallrecordsMakanan(){
+    
+    public String getMeja() {
+        return this.Meja;
+    }
+    
+    public void setMeja(String name) {
+        this.Meja = name;
+    } 
+    public static List<Product> getallrecordsMakanan(){
         dao pdao=new dao();
         List<Product> prod=pdao.retriveProductMakanan();
         return prod;
     }
-    public List<Product> getallrecordsMinuman(){
+    public static List<Product> getallrecordsMinuman(){
         dao pdao=new dao();
         List<Product> prod=pdao.retriveProductMinuman();
         return prod;
     }
+    
 
     public void saveMakanan(){
         dao pdao=new dao();
@@ -119,26 +136,68 @@ public class Product  implements java.io.Serializable {
         this.path = "";
     }
 
-    public String[] getFavoriteCar1() {
-        return favoriteCar1;
+    public String getMakananPilih() {
+        return this.makananPilih;
     }
-    public void setFavoriteCar1(String[] favoriteCar1) {
-        this.favoriteCar1 = favoriteCar1;
+    public void setMakananPilih(String makananPilih) {
+        this.makananPilih = makananPilih;
     }
-    public String[] getFavoriteCar1Value()
-    {
-          
-          List<Product> prod= getallrecordsMakanan();
-          favoriteCar1 = new String[prod.size()];
+    
+    public String getMinumanPilih() {
+        return this.minumanPilih;
+    }
+    public void setMinumanPilih(String makananPilih) {
+        this.minumanPilih = makananPilih;
+    }
+   
+    
+    
+    public String[] getKeranjangNama() {
+        return KeranjangNama;
+    }
+    public void setKeranjangNama(String[] nama) {
+        this.KeranjangNama = nama;
+    }
+    
+    public void tambahKeKeranjang(){
+        String[] a = makananPilih.split(",");
+        String[] b = minumanPilih.split(",");
+        Transaksi tr = new Transaksi();
+        tr.setJumlah(1);
+        tr.setTablenum(this.Meja);
+        tr.setProduct(a[0]+", "+b[0]);
+        tr.setTotal(Float.parseFloat(a[1])+Float.parseFloat(b[1]));
+        tr.save();
+    }
+    
+    
+    public static Map<String,Object> makanan2value;
+    static {
+        makanan2value = new LinkedHashMap<String,Object>();
+        minuman2value = new LinkedHashMap<String,Object>();
+        List<Product> prod= getallrecordsMakanan();
+            makanan2value.put("Tidak Ada", "Tidak Ada"); 
+            for (int i =0; i < prod.size(); i++) {
+                makanan2value.put(prod.get(i).name+" - "+prod.get(i).price, prod.get(i).name+','+prod.get(i).price); 
+            }
+    }
+    
+    public Map<String,Object> getMakananPilihValue() {
+		return makanan2value;
+	}
+    public static Map<String,Object> minuman2value;
+    static {
+        minuman2value = new LinkedHashMap<String,Object>();
+        List<Product> prod= getallrecordsMinuman();
+            minuman2value.put("Tidak Ada", "Tidak Ada"); 
             for (int i =0; i < prod.size(); i++) 
-            favoriteCar1[i] = prod.get(i).name; 
-        return favoriteCar1;
+            minuman2value.put(prod.get(i).name+" - "+prod.get(i).price, prod.get(i).name+','+prod.get(i).price); 
     }
-     
-    public String getFavoriteCar1InString()
-    {
-        return Arrays.toString(favoriteCar1);
+    
+    public Map<String,Object> getMinumanPilihValue() {
+		return minuman2value;
     }
+    
 }
     
     

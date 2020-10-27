@@ -11,6 +11,7 @@ and open the template in the editor.
 <head>
     <title>Kopiku - Kopi Nikmat Gak Bikin Kembung</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
 </head>
 <body>
@@ -21,26 +22,49 @@ and open the template in the editor.
             </div>
         </div>
         <div class="row w-100 m-0">
-            <div class="col-md-2 bg-danger">TEST</div>
-            <div class="col-md-9 bg-success">
+            <div class="col-md-1 bg-danger">TEST</div>
+            <div class="col-md-8 bg-success">
                 <h:form class="form-group form-makanan" id="updateMinuman">
                     <h4>Pilih Meja</h4>
-                    <h:selectOneMenu class="form-control" >
+                    <h:selectOneMenu class="form-control" value="#{product.meja}" >
                         <f:selectItem itemValue="Meja-1" itemLabel="Meja 1" />
                         <f:selectItem itemValue="Meja-2" itemLabel="Meja 2" />
                         <f:selectItem itemValue="Meja-3" itemLabel="Meja 3" />
+                        <f:selectItem itemValue="Meja-4" itemLabel="Meja 4" />
+                        <f:selectItem itemValue="Meja-5" itemLabel="Meja 5" />
+                        <f:selectItem itemValue="Meja-6" itemLabel="Meja 6" />
+                        <f:selectItem itemValue="Meja-7" itemLabel="Meja 7" />
                     </h:selectOneMenu>
                     <h5>Makanan</h5>
-                    <h:selectManyCheckbox value="#{product.favoriteCar1}">
-                        <f:selectItems value="#{product.favoriteCar1Value}" />
-                    </h:selectManyCheckbox>
+                    <h:selectOneRadio required="true" layout="pageDirection" id="checkboxMakan" value="#{product.makananPilih}">       
+                        <f:selectItems  value="#{product.makananPilihValue}" />
+                    </h:selectOneRadio>
                     
-                    <h:commandButton class="btn btn-success" value="Update Minuman" action="#{product.update}"/>
+                    <h5>Minuman</h5>
+                    <h:selectOneRadio layout="pageDirection" id="checkboxMinum" class="test" value="#{product.minumanPilih}">
+                        <f:selectItems  value="#{product.minumanPilihValue}" />
+                    </h:selectOneRadio>
+                    
+                    <h:commandButton class="btn btn-info" value="Tambah Ke Keranjang" action="#{product.tambahKeKeranjang}"/>
                 </h:form> 
             </div>
-            <div class="col-md-1 bg-warning">TEST</div>
+            <div class="col-md-3 bg-warning">
+                <h4>Keranjang</h4>
+                <h:dataTable value="#{transaksi.getbyMeja(product.meja)}" var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">Nama Pesanan</f:facet>
+                        #{p.product}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Harga</f:facet>
+                        #{p.total}
+                    </h:column>
+                </h:dataTable> 
+                <h6>Total : #{transaksi.sum} </h6>
+            </div>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>

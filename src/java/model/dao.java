@@ -48,6 +48,25 @@ public class dao {
         }
         return prod;
     }
+    public List<Transaksi> retriveByMeja(String meja){
+        List prod = new ArrayList();
+        Transaksi prod1=new Transaksi();
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try
+        {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from Transaksi where tablenum= :meja");
+            query.setString("meja", meja);
+            prod=query.list();
+            trans.commit();   
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return prod;
+    }
 
     public void addProduct(Product product){
         Transaction trans=null;
