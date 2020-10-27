@@ -14,6 +14,10 @@ public class Product  implements java.io.Serializable {
      private String description;
      private float price;
      private String path;
+     public String nameUpdate;
+     public String descriptionUpdate;
+     public String pathUpdate;
+     public float priceUpdate;
 
     public Product() {
     }
@@ -37,6 +41,22 @@ public class Product  implements java.io.Serializable {
         return this.name;
     }
     
+    public String getNameUpdate() {
+        return this.nameUpdate;
+    }
+    
+    public String getPathUpdate() {
+        return this.pathUpdate;
+    }
+    
+    public float getPriceUpdate() {
+        return this.priceUpdate;
+    }
+    
+    public String getDescriptionUpdate() {
+        return this.descriptionUpdate;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -47,7 +67,8 @@ public class Product  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public float getPrice() {
+    
+    public float getPrice(){
         return this.price;
     }
     
@@ -68,8 +89,15 @@ public class Product  implements java.io.Serializable {
         return prod;
     }
     
-    public void save(){
+    public void saveMakanan(){
         dao pdao=new dao();
+        setPath("Makanan");
+        pdao.addProduct(this);
+    }
+    
+    public void saveMinuman(){
+        dao pdao=new dao();
+        setPath("Minuman");
         pdao.addProduct(this);
     }
     
@@ -80,20 +108,23 @@ public class Product  implements java.io.Serializable {
     
     public void update(){
         dao pdao=new dao();
+        this.name = nameUpdate;
+        this.price = priceUpdate;
+        this.description = descriptionUpdate;
+        this.path = pathUpdate;
         pdao.updateProduct(this);
     }
     
     public List<Product> getbyid(){ 
         dao pdao=new dao();
         List<Product> prod=pdao.getbyID(id);
-        name=prod.get(0).name;
-        description=prod.get(0).description;
-        path=prod.get(0).path;
-        price=prod.get(0).price;
+        nameUpdate=prod.get(0).name;
+        descriptionUpdate=prod.get(0).description;
+        pathUpdate=prod.get(0).path;
+        priceUpdate=prod.get(0).price;
         return prod;
     }
-    
-    
+      
 }
 
 
