@@ -68,8 +68,15 @@ public class Product  implements java.io.Serializable {
         return prod;
     }
     
-    public void save(){
+    public void saveMakanan(){
         dao pdao=new dao();
+        setPath("Makanan");
+        pdao.addProduct(this);
+    }
+    
+    public void saveMinuman(){
+        dao pdao=new dao();
+        setPath("Minuman");
         pdao.addProduct(this);
     }
     
