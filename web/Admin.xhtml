@@ -25,17 +25,17 @@ and open the template in the editor.
             </div>
         </div>
         <div class="row w-100 m-0">
-            <div class="col-md-2 bg-danger">
+            <div class="col-md-1 bg-danger">
                 
             </div>
-            <div class="col-md-9 bg-success">
+            <div class="col-md-10 bg-success">
                 <div class="">
                     <h2>Kelolah Data</h2>
                     <ul class="nav nav-tabs">
-                      <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                      <li><a data-toggle="tab" href="#Minuman">Menu 1</a></li>
-                      <li ><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-                      <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+                      <li class="active"><a data-toggle="tab" href="#home">Makanan</a></li>
+                      <li><a data-toggle="tab" href="#Minuman">Makanan</a></li>
+                      <li ><a data-toggle="tab" href="#menu2">Daftar Pesanan</a></li>
+                      <li><a data-toggle="tab" href="#menu3">Daftar Menu</a></li>
                     </ul>
                   
                     <div class="tab-content">
@@ -62,12 +62,10 @@ and open the template in the editor.
 
                         <hr />
                         <h3>Update Makanan</h3>
-                        
                         <h:form class="form-group form-makanan" id="updateMakanan">
-
                             <label for="idUpdateMakanan" class="text">ID Makanan</label> 
-                                <h:inputText id="idUpdateMakanan" class="form-control" value="#{product.id}"/>
-                                <h:commandButton class="btn btn-info" value="Tampilkan Product" action="#{product.getbyid}"/>
+                                <h:inputText id="idUpdateMakanan" class="form-control" value="#{product.id}"/> <br /><br />
+                                <h:commandButton class="btn btn-info" value="Tampilkan Makanan" action="#{product.getbyid}"/><br /><br />
 
                             <label for="namaUpdateMakanan" class="text">Nama Makanan</label> 
                             <h:inputText id="namaUpdateMakanan" class="form-control" value="#{product.name}"/>
@@ -82,6 +80,14 @@ and open the template in the editor.
                             <br />
                             <h:commandButton class="btn btn-success" value="Update Makanan" action="#{product.update}"/>
                         </h:form> 
+                        <hr />
+                        <h3>Delete Makanan</h3>
+                        <h:form class="form-group form-makanan" id="deleteMakanan">
+                            <label for="idDeleteMakanan" class="text">ID Makanan</label> 
+                            <h:inputText id="idDeleteMakanan" class="form-control" value="#{product.id}"/><br /><br />
+                            <h:commandButton class="btn btn-danger" value="Hapus" action="#{product.delete}"/><br /><br />
+                        </h:form> 
+
 
                       </div>
                       <div id="Minuman" class="tab-pane fade">
@@ -102,11 +108,44 @@ and open the template in the editor.
                                 <br />
                                 <br />
                                 <h:commandButton class="btn btn-success" value="Tambahkan Minuman" action="#{product.saveMinuman}"/>
-                            
                         </h:form> 
+                        <hr />
+                        <h3>Update Minuman</h3>
+                        <h:form class="form-group form-makanan" id="updateMinuman">
+                            <label for="idUpdateMinuman" class="text">ID Minuman</label> 
+                                <h:inputText id="idUpdateMinuman" class="form-control" value="#{product.id}"/><br /><br />
+                                <h:commandButton class="btn btn-info" value="Tampilkan Minuman" action="#{product.getbyid}"/><br /><br />
+
+                            <label for="namaUpdateMinuman" class="text">Nama Minuman</label> 
+                            <h:inputText id="namaUpdateMinuman" class="form-control" value="#{product.name}"/>
+                                
+                            <label for="descUpdateMinuman" class="text">Masukan Deskripsi</label> 
+                            <h:inputText id="descUpdateMinuman" class="form-control" value="#{product.description}"/>
+
+                            <label for="priceUpdateMinuman" class="text">Masukkan Harga</label> 
+                            <h:inputText id="priceUpdateMinuman" class="form-control" value="#{product.price}"/>
+                            <h:inputText  class="form-control d-none" value="#{product.path}"/>
+                            <br />
+                            <br />
+                            <h:commandButton class="btn btn-success" value="Update Minuman" action="#{product.update}"/>
+                        </h:form> 
+                        
+                        <hr />
+                        <h3>Delete Minuman</h3>
+                        <h:form class="form-group form-makanan" id="deleteMinuman">
+                            <label for="idDeleteMinuman" class="text">ID Minuman</label> 
+                            <h:inputText id="idDeleteMinuman" class="form-control" value="#{product.id}"/><br /><br />
+                            <h:commandButton class="btn btn-danger" value="Hapus" action="#{product.delete}"/><br /><br />
+                        </h:form> 
+
                       </div>
+
+                      
+
+                      <!-- DAFTAR PESANAN -->
+
                       <div id="menu2" class="tab-pane fade">
-                        <h3>Menu 2</h3>
+                        <h3>Daftar Pesanan</h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                       </div>
                       <div id="menu3" class="tab-pane fade">
