@@ -11,7 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class dao {
-    public List<Product> retriveProduct(){
+    public List<Product> retriveProductMakanan(){
         List prod = new ArrayList();
         Product prod1=new Product();
         Transaction trans=null;
@@ -19,7 +19,26 @@ public class dao {
         try
         {
             trans=session.beginTransaction();
-            Query query=session.createQuery("from Product");
+            Query query=session.createQuery("from Product where path='Makanan'");
+            prod=query.list();
+            trans.commit();   
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return prod;
+    }
+    
+    public List<Product> retriveProductMinuman(){
+        List prod = new ArrayList();
+        Product prod1=new Product();
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try
+        {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("from Product where path='Minuman'");
             prod=query.list();
             trans.commit();   
         }

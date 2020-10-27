@@ -54,9 +54,14 @@ public class Product  implements java.io.Serializable {
     public void setPath(String path) {
         this.path = path;
     }
-    public List<Product> getallrecords(){
+    public List<Product> getallrecordsMakanan(){
         dao pdao=new dao();
-        List<Product> prod=pdao.retriveProduct();
+        List<Product> prod=pdao.retriveProductMakanan();
+        return prod;
+    }
+    public List<Product> getallrecordsMinuman(){
+        dao pdao=new dao();
+        List<Product> prod=pdao.retriveProductMinuman();
         return prod;
     }
 
@@ -111,9 +116,6 @@ public class Product  implements java.io.Serializable {
         this.price = 0;
         this.path = "";
     }
-
-
-
 
 }
     
