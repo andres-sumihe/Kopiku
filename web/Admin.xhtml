@@ -16,6 +16,25 @@ and open the template in the editor.
     <link rel="stylesheet" href="./assets/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  
+  <style>
+      div.card-meja {
+            width: 30% !important;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            height: auto;
+            padding: 10px;
+            background-color: #eee;
+            -webkit-box-shadow: 10px 10px 21px -2px rgba(0,0,0,0.75);
+               -moz-box-shadow: 10px 10px 21px -2px rgba(0,0,0,0.75);
+                    box-shadow: 10px 10px 21px -2px rgba(0,0,0,0.75);
+        }
+        td, th {
+            padding: 5px 8px;;
+        }
+  </style>
 </head>
 <body>
     <div class="container-fluid w-100 p-0">
@@ -25,15 +44,15 @@ and open the template in the editor.
             </div>
         </div>
         <div class="row w-100 m-0">
-            <div class="col-md-1 bg-danger">
+            <div class="col-md-1 ">
                 
             </div>
-            <div class="col-md-10 bg-success">
+            <div class="col-md-10">
                 <div class="">
                     <h2>Kelolah Data</h2>
                     <ul class="nav nav-tabs">
                       <li class="active"><a data-toggle="tab" href="#home">Makanan</a></li>
-                      <li><a data-toggle="tab" href="#Minuman">Makanan</a></li>
+                      <li><a data-toggle="tab" href="#Minuman">Minuman</a></li>
                       <li ><a data-toggle="tab" href="#menu2">Daftar Pesanan</a></li>
                       <li><a data-toggle="tab" href="#menu3">Daftar Menu</a></li>
                     </ul>
@@ -81,9 +100,9 @@ and open the template in the editor.
                             <h:commandButton class="btn btn-success" value="Update Makanan" action="#{product.update}"/>
                         </h:form> 
                         <hr />
-                        <h3>Delete Makanan</h3>
+                        <h3>Delete Menu</h3>
                         <h:form class="form-group form-makanan" id="deleteMakanan">
-                            <label for="idDeleteMakanan" class="text">ID Makanan</label> 
+                            <label for="idDeleteMakanan" class="text">ID Menu</label> 
                             <h:inputText id="idDeleteMakanan" class="form-control" value="#{product.id}"/><br /><br />
                             <h:commandButton class="btn btn-danger" value="Hapus" action="#{product.delete}"/><br /><br />
                         </h:form> 
@@ -91,7 +110,7 @@ and open the template in the editor.
 
                       </div>
                       <div id="Minuman" class="tab-pane fade">
-                        <h3>Minuman</h3>
+                        <h3>Tambah Minuman</h3>
                         <h:form class="form-group form-makanan" id="tambahMinuman">
 
                                 <label for="idMinuman" class="text">ID Minuman</label> 
@@ -144,11 +163,136 @@ and open the template in the editor.
 
                       <!-- DAFTAR PESANAN -->
 
-                      <div id="menu2" class="tab-pane fade">
+                    <div id="menu2" class="tab-pane fade">
                         <h3>Daftar Pesanan</h3>
-                        
-                    
-                    
+                        <div class="d-flex flex-row justify-content-around flex-wrap">
+                            <div class="card-meja">
+                                <h5>Meja 1</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-1")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 2</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-2")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 3</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-3")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 4</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-4")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 5</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-5")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 6</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-6")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 7</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-7")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 8</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-8")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                            <div class="card-meja">
+                                <h5>Meja 9</h5>
+                                <h:dataTable value='#{transaksi.getbyMeja("Meja-9")}' var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                    <h:column>
+                                        <f:facet name="header">Nama Pesanan</f:facet>
+                                        #{p.product}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Harga</f:facet>
+                                        #{p.total}
+                                    </h:column>
+                                </h:dataTable> 
+                                <h6>Total : #{transaksi.sum} </h6>
+                            </div>
+                        </div>
                     
                     </div>
                       <div id="menu3" class="tab-pane fade">
@@ -205,7 +349,7 @@ and open the template in the editor.
                     </div>
                   </div>
             </div>
-            <div class="col-md-1 bg-warning">TEST</div>
+            <div class="col-md-1"></div>
         </div>
     </div>
 

@@ -76,7 +76,7 @@ public class dao {
         try
         {
             trans=session.beginTransaction();
-            Query query=session.createQuery("delete Transaksi where tablenum= :meja");
+            Query query=session.createQuery("delete Transaksi where tablenum = :meja");
             query.setParameter("meja", meja);
             int result = query.executeUpdate();
             if (result > 0) {

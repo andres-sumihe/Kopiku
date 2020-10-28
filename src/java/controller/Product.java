@@ -174,7 +174,6 @@ public class Product  implements java.io.Serializable {
     public static Map<String,Object> makanan2value;
     static {
         makanan2value = new LinkedHashMap<String,Object>();
-        minuman2value = new LinkedHashMap<String,Object>();
         List<Product> prod= getallrecordsMakanan();
             makanan2value.put("Tidak Ada", "Tidak Ada"); 
             for (int i =0; i < prod.size(); i++) {
@@ -185,6 +184,9 @@ public class Product  implements java.io.Serializable {
     public Map<String,Object> getMakananPilihValue() {
 		return makanan2value;
 	}
+    
+    
+    
     public static Map<String,Object> minuman2value;
     static {
         minuman2value = new LinkedHashMap<String,Object>();
