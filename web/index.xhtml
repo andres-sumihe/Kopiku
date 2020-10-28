@@ -22,8 +22,8 @@ and open the template in the editor.
             </div>
         </div>
         <div class="row w-100 m-0">
-            <div class="col-md-1 bg-danger">TEST</div>
-            <div class="col-md-8 bg-success">
+            <div class="col-md-1 "></div>
+            <div class="col-md-7 ">
                 <h:form class="form-group form-makanan" id="updateMinuman">
                     <h4>Pilih Meja</h4>
                     <h:selectOneMenu class="form-control" value="#{product.meja}" >
@@ -48,7 +48,7 @@ and open the template in the editor.
                     <h:commandButton class="btn btn-info" value="Tambah Ke Keranjang" action="#{product.tambahKeKeranjang}"/>
                 </h:form> 
             </div>
-            <div class="col-md-3 bg-warning">
+            <div class="col-md-4 ">
                 <h4>Keranjang</h4>
                 <h:dataTable value="#{transaksi.getbyMeja(product.meja)}" var="p" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                     <h:column>
@@ -61,10 +61,37 @@ and open the template in the editor.
                     </h:column>
                 </h:dataTable> 
                 <h6>Total : #{transaksi.sum} </h6>
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    BAYAR
+                  </button>
+                <h:form>
+                    <h:commandButton class="btn btn-danger float-right mr-5" value="Reset Pesanan" action="#{transaksi.delete(product.meja)}"/>
+                </h:form>
             </div>
         </div>
     </div>
-    
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title " id="exampleModalLongTitle">SELESAIKAN PEMBAYARAN</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h6>Total</h6>
+                Nominal: Rp. <b>#{transaksi.sum}</b> <br />
+                No ID: 23681916718239 <br />
+                Expired: 5 Menit <br />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Lanjut Ke Aplikasi GOJEK</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>

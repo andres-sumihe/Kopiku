@@ -1,8 +1,14 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import javax.faces.bean.ManagedBean;
 import model.dao;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 
 @ManagedBean(name = "transaksi")
 public class Transaksi  implements java.io.Serializable {
@@ -71,20 +77,24 @@ public class Transaksi  implements java.io.Serializable {
     public List<Transaksi> getbyMeja(String Meja){
         dao tdao=new dao();
         List<Transaksi> tran = tdao.retriveByMeja(Meja);
-        float[] a = new float[tran.size()];
+        int[] a = new int[tran.size()];
         for(int i = 0; i<tran.size();i++){
-            a[i] = tran.get(i).total;
+            a[i] = (int)tran.get(i).total;
         }
-        for(int i=0; i<tran.size(); i++){
-            sum = sum + a[i];
-         }
+        int c = IntStream.of(a).sum();
+        sum = (float)c;
         return tran;
     }
-    
+   
     public float getSum(){
         return this.sum;
     }
     public void setSum(float sum){
         this.sum = sum;
+    }
+    
+    public void delete(String meja){    
+        dao udao=new dao();
+        udao.deleteByMeja(meja);
     }
 }

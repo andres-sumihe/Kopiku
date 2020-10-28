@@ -67,6 +67,29 @@ public class dao {
         }
         return prod;
     }
+    
+    public void deleteByMeja(String meja){
+        List prod = new ArrayList();
+        Transaksi prod1=new Transaksi();
+        Transaction trans=null;
+        Session session=NewHibernateUtil.getSessionFactory().openSession();
+        try
+        {
+            trans=session.beginTransaction();
+            Query query=session.createQuery("delete Transaksi where tablenum= :meja");
+            query.setParameter("meja", meja);
+            int result = query.executeUpdate();
+            if (result > 0) {
+                System.out.println("Expensive products was removed");
+            }
+//            prod=query.list();
+            trans.commit();   
+        }
+        catch(Exception e)
+        {
+            
+        }
+    }
 
     public void addProduct(Product product){
         Transaction trans=null;
